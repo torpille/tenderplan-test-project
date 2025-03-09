@@ -93,9 +93,6 @@ class GetPrintFormLinks(Task):
         ]
 
 
-
-
-
 app.register_task(GetPrintFormLinks())
 
 
