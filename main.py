@@ -10,4 +10,3 @@ if __name__ == "__main__":
         logger.info(result)
     except Exception as e:
         logger.info(f"Ошибка получения результата задачи: {e}")
-
