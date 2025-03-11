@@ -13,11 +13,12 @@ Docker Compose: Убедитесь, что Docker Compose установлен.
 
 Redis: Убедитесь, что Redis установлен, если это не так, то его необходимо установить:
 
-bash
+```bash
    sudo apt update
    sudo apt upgrade
    sudo apt install redis-server
    sudo systemctl restart redis.service
+```
 
 ## Установка
 
@@ -25,25 +26,25 @@ bash
 
 1. Склонируйте репозиторий:
    
-bash
+```bash
    git clone https://github.com/torpille/tenderplan-test-project
    cd tenderplan-test-project
-
+```
 
 ## Сборка и запуск через Docker Compose
 Используйте Docker Compose для сборки и запуска контейнера:
 
    
-bash
+```bash
    docker-compose up --build
-
+```
 
 ## Остановка микросервиса
 Для остановки микросервиса выполните:
 
-bash
+```bash
    docker compose down
-
+```
 
 ## Контакты
 
