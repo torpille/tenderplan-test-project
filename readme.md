@@ -11,14 +11,6 @@ Docker: Убедитесь, что Docker установлен и работае
 
 Docker Compose: Убедитесь, что Docker Compose установлен.
 
-Redis: Убедитесь, что Redis установлен, если это не так, то его необходимо установить:
-
-```bash
-   sudo apt update
-   sudo apt upgrade
-   sudo apt install redis-server
-   sudo systemctl restart redis.service
-```
 
 ## Установка
 
