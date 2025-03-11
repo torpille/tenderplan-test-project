@@ -25,7 +25,6 @@ class GetPublishDate(Task):
                 .get('http://zakupki.gov.ru/oos/EPtypes/1:publishDTInEIS')
             publish_data = f"Дата публикации страницы {link} - {publish_date}"
             logger.info(publish_data)
-            print(publish_data)
         return None
 
     def verify_response_data(self, link):
