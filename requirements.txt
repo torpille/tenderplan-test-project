@@ -4,3 +4,4 @@ flake8
 redis
 requests
 xmltodict
+pre-commit
