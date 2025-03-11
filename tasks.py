@@ -20,14 +20,14 @@ class GetPublishDate(Task):
     def run(self, link):
         verified_data = self.verify_response_data(link)
         if verified_data:
-            publish_date = next(iter(verified_data.values())) \
+            publish_date = verified_data \
                 .get('http://zakupki.gov.ru/oos/EPtypes/1:commonInfo') \
                 .get('http://zakupki.gov.ru/oos/EPtypes/1:publishDTInEIS')
             publish_data = f"Дата публикации страницы {link} - {publish_date}"
             logger.info(publish_data)
         return None
 
-    def verify_response_data(self, link):
+    def verify_response_data(self, link: str) -> dict | None:
         """
         :param link: str, URL для запроса
         :return: dict, данные xml страницы печатной формы
@@ -45,8 +45,12 @@ class GetPublishDate(Task):
             xml_data,
             process_namespaces=True
         )
-        if len(parsed_xml_data) == 1:
-            return parsed_xml_data
+        if len(parsed_xml_data) == 1 \
+                and next(iter(parsed_xml_data.keys())) in settings.TENDER_TYPES:
+            return next(iter(parsed_xml_data.values()))
+        else:
+            logger.error(f'Не соответствует формат данных на странице {link}')
+            return None
 
 
 app.register_task(GetPublishDate())
@@ -58,7 +62,7 @@ class GetPrintFormLinks(Task):
     """
     name = 'get_print_form_links'
 
-    def run(self, links):
+    def run(self, links) -> None:
         initial_print_urls = self.extract_initial_print_urls(links)
         for print_form_link in self.convert_to_print_form_links(initial_print_urls):
             GetPublishDate().delay(print_form_link)

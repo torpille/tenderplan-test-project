@@ -9,3 +9,8 @@ HEADERS = {
                   'AppleWebKit/537.36 (KHTML, like Gecko) '
                   'Chrome/91.0.4472.114 Safari/537.36'
 }
+TENDER_TYPES = [
+    'http://zakupki.gov.ru/oos/printform/1:epNotificationEZT2020',
+    'http://zakupki.gov.ru/oos/printform/1:epNotificationEZK2020',
+    'http://zakupki.gov.ru/oos/printform/1:epNotificationEF2020',
+]
