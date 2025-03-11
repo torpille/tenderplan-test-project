@@ -1,0 +1,31 @@
+services:
+
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6379:6379"
+
+  celery:
+    build: .
+    container_name: celery
+    command: celery -A tasks worker -l info
+    restart: on-failure
+    links:
+      - redis
+
+  app:
+    build: .
+    container_name: tenderdates
+    ports:
+      - "8000:8000"
+    links:
+      - redis
+    depends_on:
+      - redis
+      - celery
+
+
+
+
+
